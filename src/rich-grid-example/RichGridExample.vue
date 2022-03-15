@@ -99,7 +99,9 @@
         },
         components: {
             AgGridVue,
-            SkillFilter
+            SkillFilter,
+            HeaderGroupComponent,
+            agDateInput: DateComponent
         },
         methods: {
             createRowData() {
@@ -138,7 +140,7 @@
                     },
                     {
                         headerName: 'Employee',
-                        headerGroupComponentFramework: HeaderGroupComponent,
+                        headerGroupComponent: 'HeaderGroupComponent',
                         children: [
                             {
                                 headerName: "Name", field: "name",
@@ -201,9 +203,9 @@
 
             calculateRowCount() {
                 if (this.api && this.rowData) {
-                    let model = this.gridOptions.api.getModel();
-                    let totalRows = this.rowData.length;
-                    let processedRows = model.getRowCount();
+                    const model = this.gridOptions.api.getModel();
+                    const totalRows = this.rowData.length;
+                    const processedRows = model.getRowCount();
                     this.rowCount = processedRows.toLocaleString() + ' / ' + totalRows.toLocaleString();
                 }
             },
@@ -279,7 +281,6 @@
         },
         beforeMount() {
             this.gridOptions = {};
-            this.gridOptions.frameworkComponents = { agDateInput: DateComponent };
             this.createRowData();
             this.createColumnDefs();
             this.showGrid = true;
@@ -287,8 +288,8 @@
     }
 
     function skillsCellRenderer(params) {
-        let data = params.data;
-        let skills = [];
+        const data = params.data;
+        const skills = [];
         RefData.IT_SKILLS.forEach(function (skill) {
             if (data && data.skills && data.skills[skill]) {
                 skills.push('<img src="https://www.ag-grid.com/example-assets/skills/' + skill + '.png" width="16px" title="' + skill + '" />');
@@ -298,8 +299,8 @@
     }
 
     function countryCellRenderer(params) {
-        let flag = "<img border='0' width='15' height='10' style='margin-bottom: 2px' src='https://www.ag-grid.com/example-assets/flags/" + RefData.COUNTRY_CODES[params.value] + ".png'>";
-        return flag + " " + params.value;
+        const flag = "<img border='0' width='15' height='10' style='margin-bottom: 2px' src='https://www.ag-grid.com/example-assets/flags/" + RefData.COUNTRY_CODES[params.value] + ".png'>";
+        return `${flag} ${params.value}`;
     }
 
     function createRandomPhoneNumber() {
@@ -314,9 +315,9 @@
     }
 
     function percentCellRenderer(params) {
-        let value = params.value;
+        const value = params.value;
 
-        let eDivPercentBar = document.createElement('div');
+        const eDivPercentBar = document.createElement('div');
         eDivPercentBar.className = 'div-percent-bar';
         eDivPercentBar.style.width = value + '%';
         if (value < 20) {
@@ -327,11 +328,11 @@
             eDivPercentBar.style.backgroundColor = '#00A000';
         }
 
-        let eValue = document.createElement('div');
+        const eValue = document.createElement('div');
         eValue.className = 'div-percent-value';
         eValue.innerHTML = value + '%';
 
-        let eOuterDiv = document.createElement('div');
+        const eOuterDiv = document.createElement('div');
         eOuterDiv.className = 'div-outer-div';
         eOuterDiv.appendChild(eValue);
         eOuterDiv.appendChild(eDivPercentBar);
