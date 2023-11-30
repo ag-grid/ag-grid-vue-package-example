@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-vue-package-example",
-  "version": "30.1.0",
+  "version": "31.0.0",
   "private": true,
   "description": "AG Grid Angular Example Using Angular CLI",
   "license": "MIT",
@@ -11,15 +11,14 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve --host 0.0.0.0",
-    "package": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build && npm run hash",
-    "hash": "sh ./hashDirectory.sh > .hash",
+    "package": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
     "testx": "vue-cli-service test:unit --env=jest-environment-jsdom-fourteen",
     "test:debug": "node --inspect-brk ./node_modules/@vue/cli-service/bin/vue-cli-service.js test:unit"
   },
   "dependencies": {
-    "ag-grid-community": "~30.1.0",
-    "ag-grid-enterprise": "~30.1.0",
-    "ag-grid-vue": "~30.1.0",
+    "ag-grid-community": "~31.0.0",
+    "ag-grid-enterprise": "~31.0.0",
+    "ag-grid-vue": "~31.0.0",
     "bootstrap": "4.6.0",
     "vue": "2.6.14",
     "vue-property-decorator": "9.1.2",
